@@ -177,3 +177,11 @@ a:active{
 	text-decoration: underline;
 	cursor: pointer;
 }
+
+span#infoLinks {
+	font-size: 85%;
+	margin-right: 0.5%;
+}
+span#infoLinks a {
+	text-decoration: underline;
+}

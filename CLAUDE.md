@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-DataBrowser is a static web app (Leipzig University, remote-sensing quicklook viewer) that shows 1–6 quicklook PNGs side by side for a chosen site and date. There is no build step, package manager, linter, or test suite. It is served as-is by a PHP-capable web server (PHP is required for the five `.php` files).
+DataBrowser is a static web app (remote-sensing quicklook viewer) that shows 1–6 quicklook PNGs side by side for a chosen site and date. There is no build step, package manager, linter, or test suite. It is served as-is by a PHP-capable web server (PHP is required for the five `.php` files).
 
 To run locally (first `cp config.example.json config.json` if `config.json` is missing): `php -S localhost:8000` in the repo root, then open `http://localhost:8000/dataBrowser2.html`. Opening via `file://` will not work (`fetch('config.json')` and the PHP endpoints need HTTP). `jQuery`/`jQuery UI` are loaded from `code.jquery.com`, so a network connection is needed.
 
@@ -12,7 +12,7 @@ To run locally (first `cp config.example.json config.json` if `config.json` is m
 
 - **`dataBrowser{1,2,3,4,6}.html`** — one page per panel count (the number in the filename *is* the panel count). They are near-duplicates: each sets `var noPanels = N`, includes the panel `<img>`/`<select>` elements for that layout, and carries layout-specific inline CSS. `index.html` just redirects to `dataBrowser2.html`. A change to shared markup (controls, permalink dialog, script includes) must be repeated in every layout file. (There is no `dataBrowser5.html`; the panel selector offers 1/2/3/4/6.)
 - **`dataBrowser.js`** — all behavior, shared by every layout. Plain global-state jQuery code (`config`, `dataStrings`, `minDates`, etc.), no modules.
-- **`config.json`** — the single source of truth for sites. It is gitignored (site-specific); `config.example.json` is the tracked template (LIM only) and `README.md` documents the format. When adding config keys, update the example and README too. Each entry under `sites` has `longName`, `minDate`/`maxDate`, `hasDisabled`, `dataStrings`, and optionally `cloudnetSiteName`. Adding a site or instrument is normally a `config.json`-only change.
+- **`config.json`** — the single source of truth for sites. It is gitignored (site-specific); `config.example.json` is the tracked template (LIM only) and `README.md` documents the format. When adding config keys, update the example and README too. Top-level `title`, `organization` and `imprintUrl` set the page title and the GitHub/Imprint links in the control bar (`setupInfoLinks()`); the HTML `<title>` is only a fallback. Each entry under `sites` has `longName`, `minDate`/`maxDate`, `hasDisabled`, `dataStrings`, and optionally `cloudnetSiteName`. Adding a site or instrument is normally a `config.json`-only change.
 - **`dataBrowser.css`** — shared styles.
 - **`getIp.php`** — emits `var yourIp='…'`; JS uses it to set `uniNetwork` (university IP prefixes) and decide whether to show the "only accessible from university network" notice for `hasDisabled` sites.
 - **`getCloudnetData.php` / `getCloudnetProducts.php`** — server-side proxies to the Cloudnet API (`cloudnet.fmi.fi`) for CORS reasons; the products proxy caches to `sys_get_temp_dir()` for 24 h. `getCloudnetData.php` takes either `date` or `dateFrom`/`dateTo` (+ optional `variable`).

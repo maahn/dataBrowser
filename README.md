@@ -36,6 +36,9 @@ For local testing without Apache, `php -S localhost:8000` in the project folder 
 
 ```json
 {
+  "title": "Data Browser",
+  "organization": "Leipzig University",
+  "imprintUrl": "https://www.uni-leipzig.de/impressum",
   "sites": {
     "LIM": {
       "longName": "Leipzig Institute for Meteorology (LIM)",
@@ -51,6 +54,8 @@ For local testing without Apache, `php -S localhost:8000` in the project folder 
 }
 ```
 
+- `title` / `organization` – the browser tab title is `title - organization` (`organization` optional).
+- `imprintUrl` (optional) – adds an "Imprint" link next to the "GitHub" link at the left of the grey control bar.
 - `longName` – label in the site dropdown.
 - `minDate` / `maxDate` – selectable range; an absolute `"yyyy-mm-dd"` string or an integer day offset (`0` = today).
 - `hasDisabled` – show a note that some instruments are only reachable from the university network (uses `getIp.php`).

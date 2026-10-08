@@ -48,6 +48,9 @@ fetch('config.json')
   });
 
 function populateGlobalConfig(data) {
+  // Page title and footer links come from config.json (title, organization, imprintUrl)
+  document.title = (data.title || "Data Browser") + (data.organization ? " - " + data.organization : "");
+  setupInfoLinks(data.imprintUrl);
   for (const [siteKey, siteData] of Object.entries(data.sites)) {
     longName[siteKey] = siteData.longName;
     minDates[siteKey] = siteData.minDate;
@@ -56,6 +59,18 @@ function populateGlobalConfig(data) {
     dataStrings[siteKey] = siteData.dataStrings;
     cloudnetSiteNames[siteKey] = siteData.cloudnetSiteName || "";
   }
+}
+
+var REPOSITORY_URL = "https://github.com/maahn/dataBrowser";
+
+/** Adds the GitHub and (if configured) imprint links at the far left of the grey control bar. */
+function setupInfoLinks(imprintUrl) {
+  var box = $('<span id="infoLinks">').append(
+    $('<a target="_blank" rel="noopener">').attr("href", REPOSITORY_URL).text("GitHub"));
+  if (imprintUrl) {
+    box.append(" | ", $('<a target="_blank" rel="noopener">').attr("href", imprintUrl).text("Imprint"));
+  }
+  $("#controls").prepend(box);
 }
 
 // ============================================================================

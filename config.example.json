@@ -1,4 +1,7 @@
 {
+  "title": "Data Browser",
+  "organization": "Leipzig University",
+  "imprintUrl": "https://www.uni-leipzig.de/impressum",
   "sites": {
     "LIM": {
       "longName": "Leipzig Institute for Meteorology (LIM)",
