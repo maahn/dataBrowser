@@ -2,7 +2,7 @@
 
 A small web app for browsing remote-sensing quicklook plots. Pick a site and a date and view 1–6 plots side by side; the address bar always reflects the current view, so it can be bookmarked or shared. Plots come either from static URL patterns defined in `config.json` or from the [Cloudnet](https://cloudnet.fmi.fi) API.
 
-(c) M. Maahn, 2012–2026, University of Leipzig.
+(c) M. Maahn, 2012–2026, Leipzig University.
 
 ## Requirements
 

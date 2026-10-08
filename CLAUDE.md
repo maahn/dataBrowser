@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-DataBrowser is a static web app (University of Leipzig, remote-sensing quicklook viewer) that shows 1–6 quicklook PNGs side by side for a chosen site and date. There is no build step, package manager, linter, or test suite. It is served as-is by a PHP-capable web server (PHP is required for the five `.php` files).
+DataBrowser is a static web app (Leipzig University, remote-sensing quicklook viewer) that shows 1–6 quicklook PNGs side by side for a chosen site and date. There is no build step, package manager, linter, or test suite. It is served as-is by a PHP-capable web server (PHP is required for the five `.php` files).
 
 To run locally (first `cp config.example.json config.json` if `config.json` is missing): `php -S localhost:8000` in the repo root, then open `http://localhost:8000/dataBrowser2.html`. Opening via `file://` will not work (`fetch('config.json')` and the PHP endpoints need HTTP). `jQuery`/`jQuery UI` are loaded from `code.jquery.com`, so a network connection is needed.
 
