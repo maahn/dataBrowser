@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Data Browser - University of Leipzig</title>
+  <!-- External Stylesheets -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="dataBrowser.css">
+
+  <!-- Configuration: Number of panels for this specific layout -->
+  <script>
+    var noPanels = 2;
+  </script>
+
+  <!-- External Scripts -->
+  <script src="getIp.php"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+  <!-- jsuri removed: replaced by native URL/URLSearchParams API in dataBrowser.js -->
+  <script src="dataBrowser.js"></script>
+  <!-- Layout-specific CSS -->
+  <style>
+    div.dataLargeBox {
+      height: 96%;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Upper Display Area -->
+  <div id="upperBox" class="dataLargeBox">
+    <div id="UpperLeftBox" class="dataSmallBox">
+      <a href="#" id="UpperLeftLink" class="zoombox">
+        <img id="UpperLeftData" class="dataPic" src="default.gif" alt=" ">
+      </a>
+      <div id="UpperLeftError" class="Error">Please select data source</div>
+    </div>
+    <div id="UpperRightBox" class="dataSmallBox">
+      <a href="#" id="UpperRightLink" class="zoombox">
+        <img id="UpperRightData" class="dataPic" src="default.gif" alt=" ">
+      </a>
+      <div id="UpperRightError" class="Error">Please select data source</div>
+    </div>
+  </div>
+
+  <!-- Control Panel -->
+  <div id="controls">
+    <span><select id="noOfPanels">
+        <option value="1">1 Panel</option>
+        <option value="2" selected="selected">2 Panels</option>
+        <option value="3">3 Panels</option>
+        <option value="4">4 Panels</option>
+        <option value="6">6 Panels</option>
+      </select></span>
+    <span>Site: <select id="selectSite"></select></span>
+    <span>&uarr;<select name="selectUpperLeft" id="selectUpperLeft" class="select">
+        <option value="default">Select:</option>
+      </select>&uarr;</span>
+    <span><input type="button" id="datepicker_prev" value="&laquo;"><input type="text" id="datepicker_date"><input
+        type="button" id="datepicker_next" value="&raquo;"></span>
+    <span>&uarr;<select name="selectUpperRight" id="selectUpperRight" class="select">
+        <option value="default">Select:</option>
+      </select>&uarr;</span>
+    <span><input type="button" id="permalink" value="permalink"></span>
+    <span id="comment">Press 'a'/'s' for +/- 1 day</span>
+  </div>
+
+  <!-- Permalink Dialog -->
+  <div id="dialog-modal" title="Get Permanent Link">
+    Use this url to load the data browser directly with the current instruments,<br /> display data of
+    <select id="dialog-modal-select">
+      <option value="-1">yesterday</option>
+      <option value="0">today</option>
+      <option value="xy" id="dialog-modal-extraDate">xy</option>
+    </select>:
+    <br />&nbsp;<br />
+    <a href="url" id="dialog-modal-url">URL</a>
+  </div>
+</body>
+
+</html>

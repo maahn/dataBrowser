@@ -1,0 +1,17 @@
+{
+  "sites": {
+    "LIM": {
+      "longName": "Leipzig Institute for Meteorology (LIM)",
+      "minDate": "2011-11-03",
+      "maxDate": 0,
+      "hasDisabled": false,
+      "dataStrings": {
+        "LIMHAT_TB": "'https://monsun.meteo.uni-leipzig.de/~remsens/quicklooks/LIMHAT/lim/actris/level1/'yy'/'mm'/'dd'/'yymmdd'_leipzig-lim_tb.png",
+        "LIMHAT_LWP": "'https://monsun.meteo.uni-leipzig.de/~remsens/quicklooks/LIMHAT/lim/actris/level2/'yy'/'mm'/'dd'/'yymmdd'_leipzig-lim_lwp.png",
+        "LIMHAT_IWV": "'https://monsun.meteo.uni-leipzig.de/~remsens/quicklooks/LIMHAT/lim/actris/level2/'yy'/'mm'/'dd'/'yymmdd'_leipzig-lim_iwv.png",
+        "CEILIM": "'https://monsun.meteo.uni-leipzig.de/~remsens/quicklooks/ceilim/LIM/plots/'yy'/'yymmdd'0000_CEILIM_QL.png'"
+      },
+      "cloudnetSiteName": "leipzig-lim"
+    }
+  }
+}
