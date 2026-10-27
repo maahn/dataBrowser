@@ -59,7 +59,7 @@ For local testing without Apache, `php -S localhost:8000` in the project folder 
 - `longName` – label in the site dropdown.
 - `minDate` / `maxDate` – selectable range; an absolute `"yyyy-mm-dd"` string or an integer day offset (`0` = today).
 - `hasDisabled` – show a note that some instruments are only reachable from the university network (uses `getIp.php`).
-- `dataStrings` – dropdown label → URL pattern. Patterns use the jQuery UI [`formatDate`](https://api.jqueryui.com/datepicker/#utility-formatDate) syntax: literal text in single quotes, `yy` = 4-digit year, `y` = 2-digit year, `mm` = month, `dd` = day. Example: `'https://host/'yy'/'mm'/'yymmdd'.png` → `https://host/2026/06/20260601.png`. Use `"disabled"` as the value for a greyed-out entry.
+- `dataStrings` – dropdown label → URL pattern. Patterns use the jQuery UI [`formatDate`](https://api.jqueryui.com/datepicker/#utility-formatDate) syntax: literal text in single quotes, `yy` = 4-digit year, `y` = 2-digit year, `mm` = month, `dd` = day. Example: `'https://host/'yy'/'mm'/'yymmdd'.png` → `https://host/2026/06/20260601.png`. Use `"disabled"` as the value for a greyed-out entry. If the resulting URL ends in `.html`/`.htm` it is shown in an iframe in the panel instead of as an image (the target server must allow framing; no missing-file hints for these, since a 404 cannot be detected cross-origin).
 - `cloudnetSiteName` (optional) – Cloudnet site id; adds the Cloudnet products that have data for that site to the dropdowns.
 
 ## Features

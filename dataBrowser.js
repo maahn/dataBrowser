@@ -699,9 +699,28 @@ function updateAddressBar() {
  * Clears a panel's image and error message, ready for a new load.
  */
 function clearPanel(loc) {
+  hidePanelFrame(loc);
   $("#" + loc + "Data").attr({ src: "default.gif", title: "" });
   $("#" + loc + "Error").text("").css("margin", "");
   $("#" + loc + "Link").attr("href", "#").removeAttr("target");
+}
+
+/** True if a (config) URL points to an HTML page, which is shown in an iframe instead of an <img>. */
+function isHtmlUrl(url) {
+  return /\.html?$/i.test(url.split(/[?#]/)[0].trim());
+}
+
+/** Shows an HTML page in the panel (iframe created on demand, replaces the image). */
+function showPanelFrame(loc, url) {
+  hidePanelFrame(loc);
+  $("#" + loc + "Link").hide();
+  $('<iframe class="dataFrame">').attr({ id: loc + "Frame", src: url, title: url }).insertAfter("#" + loc + "Link");
+}
+
+/** Removes the panel's iframe (if any) and shows the image link again. */
+function hidePanelFrame(loc) {
+  $("#" + loc + "Frame").remove();
+  $("#" + loc + "Link").show();
 }
 
 function setOneImage(loc, date, site) {
@@ -762,10 +781,17 @@ function setOneImage(loc, date, site) {
 
   } else {
     var dataString = dataStrings[site][dataStringKey];
-    var fileSrc = $.datepicker.formatDate(dataString, date);
-    $("#" + loc + "Data").attr({ src: fileSrc, title: fileSrc });
+    var fileSrc = $.datepicker.formatDate(dataString, date).trim();
     $("#" + loc + "Error").text("").css("margin", "");
-    $("#" + loc + "Link").attr({ href: fileSrc, target: "_blank" });
+    if (isHtmlUrl(fileSrc)) {
+      // HTML pages cannot be probed for 404s cross-origin, so no missing-file hints for these
+      $("#" + loc + "Data").attr({ src: "default.gif", title: "" });
+      showPanelFrame(loc, fileSrc);
+    } else {
+      hidePanelFrame(loc);
+      $("#" + loc + "Data").attr({ src: fileSrc, title: fileSrc });
+      $("#" + loc + "Link").attr({ href: fileSrc, target: "_blank" });
+    }
   }
 }
 

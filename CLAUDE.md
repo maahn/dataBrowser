@@ -28,7 +28,7 @@ To run locally (first `cp config.example.json config.json` if `config.json` is m
 
 ### Two image sources
 
-- **Config sources:** a `dataStrings` value is a jQuery UI `$.datepicker.formatDate` format string, with literal text in single quotes (e.g. `'https://…/'yy'/'mm'/'dd'/'yymmdd'_foo.png`). The date is formatted straight into the image URL. A value of `"disabled"` renders a disabled option.
+- **Config sources:** a `dataStrings` value is a jQuery UI `$.datepicker.formatDate` format string, with literal text in single quotes (e.g. `'https://…/'yy'/'mm'/'dd'/'yymmdd'_foo.png`). The date is formatted straight into the image URL. A value of `"disabled"` renders a disabled option. If the formatted URL ends in `.html`/`.htm` (`isHtmlUrl()`), `showPanelFrame()` replaces the `<img>` link with an iframe (`#<Panel>Frame`, created on demand, removed by `hidePanelFrame()`/`clearPanel()`); HTML panels have no missing-file hints.
 - **Cloudnet sources:** option values prefixed `cloudnet_` are looked up asynchronously via `getCloudnetData.php` (per site+date, cached in memory; today's data expires after `CACHE_TTL_MS`) and resolved to `https://cloudnet.fmi.fi/api/download/image/<s3key>`.
 
 ### Address bar and missing-image hints
